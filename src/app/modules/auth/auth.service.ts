@@ -14,6 +14,9 @@ const loginUser = async (payload: TLoginUser) => {
   // checking if the user is exist
   const user = await User.isUserExistsByEmail(payload.email);
 
+
+    console.log(user,"-------user");
+
   if (!user) {
     throw new ApiError(httpStatus.NOT_FOUND, "This user is not found !");
   }
@@ -48,19 +51,21 @@ const loginUser = async (payload: TLoginUser) => {
   const accessToken = jwtHelpers.createToken(
     jwtPayload,
     config.jwt.secret as string,
-    Number(config.jwt.expires_in)
+    config.jwt.expires_in as string
   );
 
   const refreshToken = jwtHelpers.createToken(
     jwtPayload,
     config.jwt.refresh_secret as string,
-    Number(config.jwt.refresh_expires_in)
+  config.jwt.refresh_expires_in
   );
 
   return {
     accessToken,
     refreshToken,
     needsPasswordChange: user?.needsPasswordChange,
+    // compatibility for callers expecting `needPasswordChange`
+    needPasswordChange: user?.needsPasswordChange,
     role: (user as any).role as USER_ROLE,
   };
 };
@@ -154,7 +159,7 @@ const refreshToken = async (token: string) => {
   const accessToken = jwtHelpers.createToken(
     jwtPayload,
     config.jwt.secret as string,
-    Number(config.jwt.expires_in)
+    config.jwt.expires_in
   );
 
   return {
@@ -190,7 +195,7 @@ const forgetPassword = async (email: string) => {
   const resetToken = jwtHelpers.createToken(
     jwtPayload,
     config.jwt.secret as string,
-    600 // 10 minutes in seconds
+    "10m" // 10 minutes in seconds
   );
 
   const resetUILink = `${config.reset_link}?id=${user._id}&token=${resetToken} `;

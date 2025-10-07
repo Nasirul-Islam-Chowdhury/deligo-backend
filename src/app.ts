@@ -7,7 +7,13 @@ import globalErrorHandler from './app/middleWares/globalErrorHandlers';
 
 const app: Application = express();
 
-app.use(cors());
+app.use(cors({
+  origin: process.env.FRONTEND_URL || 'http://localhost:8000',
+  credentials: true,
+}));
+
+
+
 app.use(cookieParser());
 
 //parser

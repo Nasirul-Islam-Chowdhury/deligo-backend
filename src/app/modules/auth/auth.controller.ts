@@ -23,7 +23,9 @@ const loginUser = catchAsync(async (req: Request, res: Response) => {
     message: 'User logged in successfully !',
     data: {
       accessToken: result.accessToken,
-      needPasswordChange: result.needsPasswordChange,
+      needPasswordChange: (result as any).needPasswordChange ?? result.needsPasswordChange,
+      // include both keys for compatibility with different clients
+      needsPasswordChange: (result as any).needsPasswordChange ?? (result as any).needPasswordChange,
       role: (result as any).role,
     },
   });

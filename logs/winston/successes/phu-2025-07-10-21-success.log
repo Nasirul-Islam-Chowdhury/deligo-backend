@@ -1,0 +1,27 @@
+2025-10-07T15:01:33.767Z [Auth service] info: SIGTERM is received
+2025-10-07T15:01:55.959Z [Auth service] info: 🛢   Database is connected successfully
+2025-10-07T15:01:57.351Z [Auth service] info: Application  listening on port 8000
+2025-10-07T15:03:34.171Z [Auth service] info: SIGTERM is received
+2025-10-07T15:04:18.362Z [Auth service] info: SIGTERM is received
+2025-10-07T15:04:23.976Z [Auth service] info: 🛢   Database is connected successfully
+2025-10-07T15:04:25.382Z [Auth service] info: Application  listening on port 8000
+2025-10-07T15:04:37.146Z [Auth service] info: 🛢   Database is connected successfully
+2025-10-07T15:04:39.280Z [Auth service] info: Application  listening on port 8000
+2025-10-07T15:05:06.403Z [Auth service] info: SIGTERM is received
+2025-10-07T15:05:23.161Z [Auth service] info: SIGTERM is received
+2025-10-07T15:05:26.536Z [Auth service] info: 🛢   Database is connected successfully
+2025-10-07T15:05:28.898Z [Auth service] info: Application  listening on port 8000
+2025-10-07T15:06:25.219Z [Auth service] info: 🛢   Database is connected successfully
+2025-10-07T15:06:26.665Z [Auth service] info: Application  listening on port 8000
+2025-10-07T15:17:00.365Z [Auth service] info: SIGTERM is received
+2025-10-07T15:18:27.490Z [Auth service] info: SIGTERM is received
+2025-10-07T15:18:31.724Z [Auth service] info: 🛢   Database is connected successfully
+2025-10-07T15:18:33.330Z [Auth service] info: Application  listening on port 8000
+2025-10-07T15:18:52.918Z [Auth service] info: 🛢   Database is connected successfully
+2025-10-07T15:18:54.225Z [Auth service] info: Application  listening on port 8000
+2025-10-07T15:19:55.927Z [Auth service] info: SIGTERM is received
+2025-10-07T15:22:16.636Z [Auth service] info: 🛢   Database is connected successfully
+2025-10-07T15:22:18.136Z [Auth service] info: Application  listening on port 8000
+2025-10-07T15:24:03.731Z [Auth service] info: SIGTERM is received
+2025-10-07T15:25:08.846Z [Auth service] info: 🛢   Database is connected successfully
+2025-10-07T15:25:10.320Z [Auth service] info: Application  listening on port 8000

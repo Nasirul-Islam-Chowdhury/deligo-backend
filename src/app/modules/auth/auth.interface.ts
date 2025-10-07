@@ -11,6 +11,7 @@ export type ILoginUserResponse = {
     accessToken: string;
     refreshToken?: string;
     needPasswordChange: boolean;
+    needsPasswordChange?: boolean;
     role?: string;
 };
 

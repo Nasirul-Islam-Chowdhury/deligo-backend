@@ -1,4 +1,3 @@
-
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-console */
 /* eslint-disable no-unused-expressions */
@@ -63,12 +62,12 @@ const globalErrorHandler: ErrorRequestHandler = (
         ]
       : [];
   }
-  res.status(statusCode).json({
+  return res.status(statusCode).json({
     success: false,
     message,
     errorMessages,
     stack: config.env !== 'production' ? error?.stack : undefined,
   });
-  next();
+
 };
 export default globalErrorHandler;

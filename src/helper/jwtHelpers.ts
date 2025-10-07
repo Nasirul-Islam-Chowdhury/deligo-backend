@@ -3,8 +3,9 @@ import jwt, { JwtPayload, Secret } from 'jsonwebtoken';
 const createToken = (
   payload: Record<string, unknown>,
   secret: any,
-  expireTime: number  | undefined,
+  expireTime: number | any | undefined,
 ): string => {
+
   return jwt.sign(payload, secret, {
     expiresIn: expireTime,
   });
