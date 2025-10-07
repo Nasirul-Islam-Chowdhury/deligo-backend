@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { Model, Types } from 'mongoose';
+import { USER_ROLE } from '../../../enums/user';
 
 
 export type IUser = {
@@ -10,6 +11,7 @@ export type IUser = {
   passwordChangedAt?: Date;
   status: 'in-progress' | 'blocked';
   isDeleted: boolean;
+  role: USER_ROLE;
 };
 
 export type UserModel = {
@@ -35,4 +37,5 @@ export interface TUser {
   passwordChangedAt?: Date;
   status: 'in-progress' | 'blocked';
   isDeleted: boolean;
+  role: USER_ROLE;
 }

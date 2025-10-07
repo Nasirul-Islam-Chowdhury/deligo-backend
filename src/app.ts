@@ -17,9 +17,15 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use('/api/v1', routes);
 
+
+// Health Check
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'OK', message: 'Server is running' });
+});
+
+
 //Testing
 app.get('/', async (req: Request, res: Response, next: NextFunction) => {
-return res.json("hi'")
   throw new Error('Testing Error logger')
 })
 

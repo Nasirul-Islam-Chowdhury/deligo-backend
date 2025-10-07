@@ -3,6 +3,7 @@ import httpStatus from "http-status";
 import jwt, { JwtPayload } from "jsonwebtoken";
 import ApiError from "../../../errors/ApiError";
 import { User } from "../users/user.model";
+import { USER_ROLE } from "../../../enums/user";
 import { TLoginUser } from "./auth.interface";
 import { jwtHelpers } from "../../../helper/jwtHelpers";
 import config from "../../../config";
@@ -41,6 +42,7 @@ const loginUser = async (payload: TLoginUser) => {
 
   const jwtPayload = {
     userId: user._id,
+    role: (user as any).role as USER_ROLE,
   };
 
   const accessToken = jwtHelpers.createToken(
@@ -59,6 +61,7 @@ const loginUser = async (payload: TLoginUser) => {
     accessToken,
     refreshToken,
     needsPasswordChange: user?.needsPasswordChange,
+    role: (user as any).role as USER_ROLE,
   };
 };
 

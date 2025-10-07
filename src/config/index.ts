@@ -8,7 +8,9 @@ export default {
   port: process.env.PORT,
   database_url: process.env.DATABASE_URL,
   bycrypt_salt_rounds: process.env.BCRYPT_SALT_ROUNDS,
-  default_user_pass: process.env.DEFAULT_USER_PASS || "123456",
+  default_user_pass: process.env.DEFAULT_USER_PASS,
+  admin_seed_email: process.env.ADMIN_SEED_EMAIL,
+  admin_seed_password: process.env.ADMIN_SEED_PASSWORD,
   jwt: {
     secret: process.env.JWT_SECRET,
     refresh_secret: process.env.JWT_REFRESH_SECRET,

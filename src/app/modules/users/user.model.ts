@@ -3,6 +3,7 @@ import bcrypt from 'bcrypt';
 import { Schema, model } from 'mongoose';
 import config from '../../../config';
 import { IUser, TUser, UserModel } from './user.interface';
+import { USER_ROLE } from '../../../enums/user';
 
 const UserSchema = new Schema<IUser, UserModel>(
   {
@@ -31,6 +32,11 @@ const UserSchema = new Schema<IUser, UserModel>(
     isDeleted: {
       type: Boolean,
       default: false,
+    },
+    role: {
+      type: String,
+      enum: Object.values(USER_ROLE),
+      default: USER_ROLE.USER,
     },
   },
   {

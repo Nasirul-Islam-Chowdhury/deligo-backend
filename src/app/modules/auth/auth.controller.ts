@@ -24,6 +24,7 @@ const loginUser = catchAsync(async (req: Request, res: Response) => {
     data: {
       accessToken: result.accessToken,
       needPasswordChange: result.needsPasswordChange,
+      role: (result as any).role,
     },
   });
 });

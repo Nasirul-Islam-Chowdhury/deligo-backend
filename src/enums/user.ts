@@ -1,1 +1,4 @@
-// No roles needed - simple auth system
+export enum USER_ROLE {
+  ADMIN = 'admin',
+  USER = 'user',
+}

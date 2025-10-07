@@ -22,4 +22,14 @@ const createUser: RequestHandler = catchAsync(
 
 export const UserController = {
   createUser,
+  createAdmin: catchAsync(async (req: Request, res: Response) => {
+    const result = await UserService.createAdmin(req.body);
+
+    sendResponse<IUser>(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: 'Admin created successfully!',
+      data: result,
+    });
+  }),
 };

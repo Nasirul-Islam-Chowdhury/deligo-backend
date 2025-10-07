@@ -4,6 +4,7 @@ import config from '../../../config/index';
 import ApiError from '../../../errors/ApiError';
 import { IUser } from './user.interface';
 import { User } from './user.model';
+import { USER_ROLE } from '../../../enums/user';
 
 const createUser = async (userData: IUser): Promise<IUser | null> => {
 
@@ -36,4 +37,16 @@ const createUser = async (userData: IUser): Promise<IUser | null> => {
 
 export const UserService = {
   createUser,
+  async createAdmin(userData: Pick<IUser, 'email' | 'password'>): Promise<IUser | null> {
+    const payload: IUser = {
+      email: userData.email,
+      password: userData.password,
+      role: USER_ROLE.ADMIN,
+      needsPasswordChange: false,
+      status: 'in-progress',
+      isDeleted: false,
+    } as IUser;
+    const created = await createUser(payload);
+    return created;
+  },
 };

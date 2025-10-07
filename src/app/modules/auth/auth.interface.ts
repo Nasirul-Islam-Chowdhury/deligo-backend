@@ -11,6 +11,7 @@ export type ILoginUserResponse = {
     accessToken: string;
     refreshToken?: string;
     needPasswordChange: boolean;
+    role?: string;
 };
 
 export type IRefreshTokenResponse = {
@@ -19,6 +20,7 @@ export type IRefreshTokenResponse = {
 
 export type IVerifiedLoginUser = {
     userId: string;
+    role?: string;
 };
 
 export type IChangePassword = {

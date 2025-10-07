@@ -73,6 +73,48 @@ const createRestaurent = async (restaurentData: IRestaurents, files?: {
   return createdRestaurent.toObject();
 };
 
+const updateRestaurent = async (id: string, payload: Partial<IRestaurents>): Promise<IRestaurents | null> => {
+  const updated = await RestaurentsModel.findByIdAndUpdate(id, payload, { new: true });
+  return updated ? updated.toObject() : null;
+};
+
+const addMenuItem = async (id: string, item: { name: string; price: number; image?: string }): Promise<IRestaurents | null> => {
+  const updated = await RestaurentsModel.findByIdAndUpdate(
+    id,
+    { $push: { menu: item } },
+    { new: true }
+  );
+  return updated ? updated.toObject() : null;
+};
+
+const updateMenuItem = async (id: string, itemId: string, payload: { name?: string; price?: number; image?: string }): Promise<IRestaurents | null> => {
+  const updated = await RestaurentsModel.findOneAndUpdate(
+    { _id: id, 'menu._id': itemId },
+    {
+      $set: {
+        'menu.$.name': payload.name,
+        'menu.$.price': payload.price,
+        'menu.$.image': payload.image,
+      },
+    },
+    { new: true }
+  );
+  return updated ? updated.toObject() : null;
+};
+
+const deleteMenuItem = async (id: string, itemId: string): Promise<IRestaurents | null> => {
+  const updated = await RestaurentsModel.findByIdAndUpdate(
+    id,
+    { $pull: { menu: { _id: itemId } } },
+    { new: true }
+  );
+  return updated ? updated.toObject() : null;
+};
+
 export const RestaurentService = {
   createRestaurent,
+  updateRestaurent,
+  addMenuItem,
+  updateMenuItem,
+  deleteMenuItem,
 };

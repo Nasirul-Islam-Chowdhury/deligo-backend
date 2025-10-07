@@ -21,6 +21,14 @@ const auth =
 
       req.user = verifiedUser; // userid
 
+      if (requiredRoles.length && verifiedUser && (verifiedUser as any).role) {
+        const userRole = (verifiedUser as any).role as string;
+        const isAllowed = requiredRoles.includes(userRole);
+        if (!isAllowed) {
+          throw new ApiError(httpStatus.FORBIDDEN, 'Forbidden: insufficient role');
+        }
+      }
+
       next();
     } catch (error) {
       next(error);

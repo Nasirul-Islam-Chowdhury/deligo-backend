@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import app from './app';
 import config from './config/index';
 import { errorLogger, logger } from './shared/logger';
+import { seedAdmin } from './seeds/seed';
 
 process.on('uncaughtException', error => {
   errorLogger.error(error);
@@ -15,6 +16,9 @@ async function bootstrap() {
   try {
     await mongoose.connect(config.database_url as string);
     logger.info(`🛢   Database is connected successfully`);
+    console.log(`🛢   Database is connected successfully`);
+
+    await seedAdmin();
 
     server = app.listen(config.port, () => {
       logger.info(`Application  listening on port ${config.port}`);
