@@ -19,8 +19,19 @@ const createRestaurentZodSchema = z.object({
       required_error: 'Cuisine type is required',
     }),
     image: z.string().optional(),
-    deliveryTime: z.string().optional(),
-    menu: z.array(menuItemSchema).optional(),
+    deliveryTime: z.string({
+      required_error: 'Delivery time is required',
+    }),
+    menu: z.union([
+      z.array(menuItemSchema),
+      z.string().transform((str) => {
+        try {
+          return JSON.parse(str);
+        } catch {
+          return [];
+        }
+      })
+    ]).optional(),
   }),
 });
 

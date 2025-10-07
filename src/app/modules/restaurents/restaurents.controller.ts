@@ -9,7 +9,17 @@ import { IRestaurents } from "./restaurents.interface";
 
 const createRestaurent: RequestHandler = catchAsync(
   async (req: Request, res: Response) => {
-    const result = await RestaurentService.createRestaurent(req.body);
+    const files = req.files as {
+      restaurantImage?: Express.Multer.File[];
+      menuImages?: Express.Multer.File[];
+    };
+
+    console.log('Received files:', {
+      restaurantImage: files?.restaurantImage?.length || 0,
+      menuImages: files?.menuImages?.length || 0
+    });
+
+    const result = await RestaurentService.createRestaurent(req.body, files);
 
     sendResponse<IRestaurents>(res, {
       statusCode: httpStatus.OK,

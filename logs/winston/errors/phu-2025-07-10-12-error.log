@@ -1,0 +1,12 @@
+2025-10-07T06:08:49.773Z [um error] error: Unknown API key sdgfsdgf
+2025-10-07T06:12:33.378Z [um error] error: Unknown API key sdgfsdgf
+2025-10-07T06:16:42.336Z [um error] error: Unknown API key sdgfsdgf
+2025-10-07T06:35:56.594Z [um error] error: Invalid cloud_name deligo
+2025-10-07T06:36:24.811Z [um error] error: listen EADDRINUSE: address already in use :::8000
+2025-10-07T06:37:02.383Z [um error] error: Invalid cloud_name cloudinary
+2025-10-07T06:37:30.567Z [um error] error: Invalid cloud_name cloudinary
+2025-10-07T06:40:28.311Z [um error] error: Invalid cloud_name cloudinary
+2025-10-07T06:43:10.697Z [um error] error: ENOENT: no such file or directory, unlink '/Users/mdnasirulislamchowdhury/Code/deligo/deligo-backend/uploads/certificate.pdf'
+2025-10-07T06:45:52.509Z [um error] error: ENOENT: no such file or directory, unlink '/Users/mdnasirulislamchowdhury/Code/deligo/deligo-backend/uploads/certificate.pdf'
+2025-10-07T06:47:31.235Z [um error] error: [object Object]
+2025-10-07T06:47:51.379Z [um error] error: [object Object]

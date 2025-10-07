@@ -1,5 +1,6 @@
 import express from 'express';
 import { restaurentRoutes } from '../modules/restaurents/restaurents.route';
+import { rideRoutes } from '../modules/rides/rides.route';
 
 
 const router = express.Router();
@@ -7,8 +8,12 @@ const router = express.Router();
 const moduleRoutes = [
   
   {
-    path: '/create-restaurent',
+    path: '/restaurents',
     route: restaurentRoutes,
+  },
+  {
+    path: '/rides',
+    route: rideRoutes,
   },
 ];
 
