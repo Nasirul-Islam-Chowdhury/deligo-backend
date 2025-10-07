@@ -1,4 +1,1 @@
-export enum ENUM_USER_ROLE {
-  USER = 'user',
-
-}
+// No roles needed - simple auth system

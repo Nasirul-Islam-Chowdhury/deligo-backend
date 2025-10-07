@@ -2,18 +2,14 @@
 import bcrypt from 'bcrypt';
 import { Schema, model } from 'mongoose';
 import config from '../../../config';
-import { IUser, UserModel } from './user.interface';
+import { IUser, TUser, UserModel } from './user.interface';
 
 const UserSchema = new Schema<IUser, UserModel>(
   {
-    id: {
+    email: {
       type: String,
       required: true,
       unique: true,
-    },
-    role: {
-      type: String,
-      required: true,
     },
     password: {
       type: String,
@@ -24,17 +20,17 @@ const UserSchema = new Schema<IUser, UserModel>(
       type: Boolean,
       default: true,
     },
-    student: {
-      type: Schema.Types.ObjectId,
-      ref: 'Student',
+    passwordChangedAt: {
+      type: Date,
     },
-    faculty: {
-      type: Schema.Types.ObjectId,
-      ref: 'Faculty',
+    status: {
+      type: String,
+      enum: ['in-progress', 'blocked'],
+      default: 'in-progress',
     },
-    admin: {
-      type: Schema.Types.ObjectId,
-      ref: 'Admin',
+    isDeleted: {
+      type: Boolean,
+      default: false,
     },
   },
   {
@@ -46,14 +42,14 @@ const UserSchema = new Schema<IUser, UserModel>(
 );
 
 UserSchema.statics.isUserExist = async function (
-  id: string,
+  email: string,
 ): Promise<Pick<
   IUser,
-  'id' | 'password' | 'role' | 'needsPasswordChange'
+  'email' | 'password' | 'needsPasswordChange'
 > | null> {
   return await User.findOne(
-    { id },
-    { id: 1, password: 1, role: 1, needsPasswordChange: 1 },
+    { email },
+    { email: 1, password: 1, needsPasswordChange: 1 },
   );
 };
 
@@ -64,10 +60,10 @@ UserSchema.statics.isPasswordMatched = async function (
   return await bcrypt.compare(givenPassword, savedPassword);
 };
 
-// User.create() / user.save()
 UserSchema.pre('save', async function (next) {
-  // hashing user password
-  const user = this;
+  // eslint-disable-next-line @typescript-eslint/no-this-alias
+  const user = this; // doc
+  // hashing password and save into DB
   user.password = await bcrypt.hash(
     user.password,
     Number(config.bycrypt_salt_rounds),
@@ -75,20 +71,30 @@ UserSchema.pre('save', async function (next) {
   next();
 });
 
-export const User = model<IUser, UserModel>('User', UserSchema);
+// set '' after saving password
+UserSchema.post('save', function (doc, next) {
+  doc.password = '';
+  next();
+});
 
-// UserSchema.methods.isUserExist = async function (
-//   id: string
-// ): Promise<Partial<IUser> | null> {
-//   return await User.findOne(
-//     { id },
-//     { id: 1, password: 1, needsPasswordChange: 1 }
-//   );
-// };
+UserSchema.statics.isUserExistsByEmail = async function (email: string) {
+  return await User.findOne({ email }).select('+password');
+};
 
-// UserSchema.methods.isPasswordMatched = async function (
-//   givenPassword: string,
-//   savedPassword: string
-// ): Promise<boolean> {
-//   return await bcrypt.compare(givenPassword, savedPassword);
-// };
+UserSchema.statics.isPasswordMatched = async function (
+  plainTextPassword,
+  hashedPassword,
+) {
+  return await bcrypt.compare(plainTextPassword, hashedPassword);
+};
+
+UserSchema.statics.isJWTIssuedBeforePasswordChanged = function (
+  passwordChangedTimestamp: Date,
+  jwtIssuedTimestamp: number,
+) {
+  const passwordChangedTime =
+    new Date(passwordChangedTimestamp).getTime() / 1000;
+  return passwordChangedTime > jwtIssuedTimestamp;
+};
+
+export const User = model<TUser, UserModel>('User', UserSchema);

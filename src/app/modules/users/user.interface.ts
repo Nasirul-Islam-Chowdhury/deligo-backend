@@ -1,26 +1,38 @@
 /* eslint-disable no-unused-vars */
 import { Model, Types } from 'mongoose';
-import { IFaculty } from '../faculty/faculty.interface';
-import { IStudent } from '../student/student.interface';
-import { IAdmin } from '../admin/admin.intrerface';
+
 
 export type IUser = {
-  id: string;
-  role: string;
+  _id?: string;
+  email: string;
   password: string;
   needsPasswordChange: boolean;
   passwordChangedAt?: Date;
-  student?: Types.ObjectId | IStudent;
-  faculty?: Types.ObjectId | IFaculty;
-  admin?: Types.ObjectId | IAdmin;
+  status: 'in-progress' | 'blocked';
+  isDeleted: boolean;
 };
 
 export type UserModel = {
   isUserExist(
-    id: string,
-  ): Promise<Pick<IUser, 'id' | 'password' | 'role' | 'needsPasswordChange'>>;
+    email: string,
+  ): Promise<Pick<IUser, 'email' | 'password' | 'needsPasswordChange'> | null>;
   isPasswordMatched(
     givenPassword: string,
     savedPassword: string,
   ): Promise<boolean>;
+  isUserExistsByEmail(email: string): Promise<IUser | null>;
+  isJWTIssuedBeforePasswordChanged(
+    passwordChangedTimestamp: Date,
+    jwtIssuedTimestamp: number,
+  ): boolean;
 } & Model<IUser>;
+
+
+export interface TUser {
+  email: string;
+  password: string;
+  needsPasswordChange: boolean;
+  passwordChangedAt?: Date;
+  status: 'in-progress' | 'blocked';
+  isDeleted: boolean;
+}
