@@ -1,0 +1,5 @@
+2025-10-07T05:07:47.719Z [um error] error: listen EADDRINUSE: address already in use 1000,
+2025-10-07T05:08:24.265Z [um error] error: listen EADDRINUSE: address already in use 1000,
+2025-10-07T05:16:02.762Z [um error] error: listen EADDRINUSE: address already in use 8000,
+2025-10-07T05:17:25.390Z [um error] error: listen EADDRINUSE: address already in use 8000,
+2025-10-07T05:22:03.673Z [um error] error: Testing Error logger

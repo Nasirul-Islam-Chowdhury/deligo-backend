@@ -1,0 +1,25 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "/Users/mdnasirulislamchowdhury/Code/deligo/deligo-backend/logs/winston/errors/.7ba3d48ebf5bc571b0feee794937a185750ba9ab-audit.json",
+    "files": [
+        {
+            "date": 1759780575469,
+            "name": "/Users/mdnasirulislamchowdhury/Code/deligo/deligo-backend/logs/winston/errors/phu-2025-07-10-01-error.log",
+            "hash": "a2cb6dafc476ac0adfa531d060f627b74daa0a16b0be4f40c7b74d0e3cee841a"
+        },
+        {
+            "date": 1759780843656,
+            "name": "/Users/mdnasirulislamchowdhury/Code/deligo/deligo-backend/logs/winston/errors/phu-2025-07-10-02-error.log",
+            "hash": "9dbdd763d07b104743aa0985b2273d4e39f9242c35a6c4e7e6f2202ee08104b1"
+        },
+        {
+            "date": 1759813664374,
+            "name": "/Users/mdnasirulislamchowdhury/Code/deligo/deligo-backend/logs/winston/errors/phu-2025-07-10-11-error.log",
+            "hash": "35d396340638a34f44bbedef7170ec72e39446658e94f67c5a73af2dc2e45914"
+        }
+    ],
+    "hashType": "sha256"
+}
