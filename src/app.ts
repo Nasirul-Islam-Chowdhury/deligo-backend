@@ -1,5 +1,6 @@
 import cors from 'cors';
 import express, { Application, NextFunction, Request, Response } from 'express';
+import bodyParser from 'body-parser';
 import httpStatus from 'http-status';
 import routes from './app/routes';
 import cookieParser from 'cookie-parser';
@@ -8,7 +9,7 @@ import globalErrorHandler from './app/middleWares/globalErrorHandlers';
 const app: Application = express();
 
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:8000',
+  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
   credentials: true,
 }));
 
@@ -19,6 +20,7 @@ app.use(cookieParser());
 //parser
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
 
 
 app.use('/api/v1', routes);

@@ -10,6 +10,14 @@ const createUser = async (userData: IUser): Promise<IUser | null> => {
 
   let newUserAllData = null;
   const session = await mongoose.startSession();
+  // Check if user already exists by email
+  const existingUser = await User.findOne({ email: userData.email }).session(session);
+  if (existingUser) {
+    await session.endSession();
+    throw new ApiError(httpStatus.CONFLICT, 'User already exists');
+  }
+
+
   try {
     session.startTransaction();
 

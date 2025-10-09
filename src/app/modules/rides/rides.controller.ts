@@ -6,36 +6,47 @@ import sendResponse from "../../../shared/sendResponse";
 import { IRide } from "./rides.interface";
 import { RideService } from "./rides.service";
 
-const createRide: RequestHandler = catchAsync(
-  async (req: Request, res: Response) => {
-    const result = await RideService.createRide(req.body);
+const createRide: RequestHandler = catchAsync(async (req: Request, res: Response) => {
+  const user = req.user; 
 
-    sendResponse<IRide>(res, {
-      statusCode: httpStatus.OK,
-      success: true,
-      message: "Ride booked successfully!",
-      data: result,
-    });
-  }
-);
+  console.log(req.body,"-------> body");
+  const result = await RideService.createRide({ ...req.body, customerId: user!.userId });
 
-const getRide: RequestHandler = catchAsync(
-  async (req: Request, res: Response) => {
-    const { id } = req.params as { id: string };
-    const result = await RideService.getRideById(id);
+  sendResponse<IRide>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "Ride booked successfully!",
+    data: result,
+  });
+});
 
-    sendResponse<IRide | null>(res, {
-      statusCode: httpStatus.OK,
-      success: true,
-      message: "Ride retrieved successfully!",
-      data: result,
-    });
-  }
-);
+const getRide: RequestHandler = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params as { id: string };
+  const result = await RideService.getRideById(id);
+
+  sendResponse<IRide | null>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "Ride retrieved successfully!",
+    data: result,
+  });
+});
+
+// ✅ New Controller to get rides for logged-in customer
+const getMyBookedRides: RequestHandler = catchAsync(async (req: Request, res: Response) => {
+  const user = req.user;
+  const result = await RideService.getMyBookedRides(user!.id);
+
+  sendResponse<IRide[]>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "My booked rides retrieved successfully!",
+    data: result,
+  });
+});
 
 export const RideController = {
   createRide,
   getRide,
+  getMyBookedRides,
 };
-
-

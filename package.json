@@ -4,7 +4,7 @@
     "description": "",
     "main": "src/server.ts",
     "scripts": {
-        "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
+        "dev": "ts-node-dev --respawn --transpile-only --poll --ignore-watch node_modules --exit-child src/server.ts",
         "test": "echo \"Error: no test specified\" && exit 1",
         "lint:check": "eslint --ignore-path .eslintignore --ext .js,.ts .",
         "prettier:check": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
@@ -38,6 +38,7 @@
         "@typescript-eslint/eslint-plugin": "^6.5.0",
         "@typescript-eslint/parser": "^6.5.0",
         "bcrypt": "^5.1.1",
+        "body-parser": "^2.2.0",
         "cloudinary": "^2.7.0",
         "cookie-parser": "^1.4.6",
         "cors": "^2.8.5",

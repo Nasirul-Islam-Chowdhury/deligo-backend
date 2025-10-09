@@ -6,25 +6,44 @@ import sendResponse from "../../../shared/sendResponse";
 import { RestaurentService } from "./restaurents.service";
 import { IRestaurents } from "./restaurents.interface";
 
-
 const createRestaurent: RequestHandler = catchAsync(
   async (req: Request, res: Response) => {
     const files = req.files as {
-      restaurantImage?: Express.Multer.File[];
-      menuImages?: Express.Multer.File[];
+      images?: Express.Multer.File[];
     };
-
-    console.log('Received files:', {
-      restaurantImage: files?.restaurantImage?.length || 0,
-      menuImages: files?.menuImages?.length || 0
-    });
-
     const result = await RestaurentService.createRestaurent(req.body, files);
 
     sendResponse<IRestaurents>(res, {
       statusCode: httpStatus.OK,
       success: true,
       message: "Restaurent created successfully!",
+      data: result,
+    });
+  }
+);
+
+const getAllRestaurents: RequestHandler = catchAsync(
+  async (req: Request, res: Response) => {
+    const result = await RestaurentService.getAllRestaurents();
+
+    sendResponse<IRestaurents[]>(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: "Restaurent retrieved successfully!",
+      data: result,
+    });
+  }
+);
+
+const getSingleRestaurent: RequestHandler = catchAsync(
+  async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const result = await RestaurentService.getSingleRestaurent(id);
+
+    sendResponse<IRestaurents | null>(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: "Restaurent retrieved successfully!",
       data: result,
     });
   }
@@ -85,8 +104,10 @@ const deleteMenuItem: RequestHandler = catchAsync(
 
 export const RestaurentController = {
   createRestaurent,
+  getSingleRestaurent,
   updateRestaurent,
   addMenuItem,
   updateMenuItem,
   deleteMenuItem,
+  getAllRestaurents
 };

@@ -1,14 +1,17 @@
 /* eslint-disable @typescript-eslint/no-this-alias */
-import { Schema, model } from "mongoose";
+import mongoose, { Schema, model } from "mongoose";
 import { IRestaurents } from "./restaurents.interface";
 
-const RestaurenntsSchema = new Schema<IRestaurents>(
+const RestaurentsSchema = new Schema<IRestaurents>(
   {
     name: String,
     cuisineType: String,
-    image: String,
+    images: [String],
     deliveryTime: String,
-    menu: [{ name: String, price: Number, image: String }],
+    menus: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Menu'
+    }],
   },
   {
     timestamps: true,
@@ -18,5 +21,16 @@ const RestaurenntsSchema = new Schema<IRestaurents>(
   }
 );
 
+// Virtual for getting menu count
+RestaurentsSchema.virtual('menuCount').get(function() {
+  return this?.menus?.length ;
+});
 
-export const User = model<IRestaurents>("Restaurents", RestaurenntsSchema);
+// Method to populate menus
+RestaurentsSchema.methods.getMenusWithDetails = async function() {
+  await this.populate('menus');
+  return this.menus;
+};
+
+
+export const Restaurents = model<IRestaurents>("Restaurents", RestaurentsSchema);

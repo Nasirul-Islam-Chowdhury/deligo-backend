@@ -25,3 +25,6 @@
 2025-10-07T15:24:03.731Z [Auth service] info: SIGTERM is received
 2025-10-07T15:25:08.846Z [Auth service] info: 🛢   Database is connected successfully
 2025-10-07T15:25:10.320Z [Auth service] info: Application  listening on port 8000
+2025-10-07T15:28:26.474Z [Auth service] info: 🛢   Database is connected successfully
+2025-10-07T15:28:27.794Z [Auth service] info: Application  listening on port 8000
+2025-10-07T15:43:53.200Z [Auth service] info: SIGTERM is received

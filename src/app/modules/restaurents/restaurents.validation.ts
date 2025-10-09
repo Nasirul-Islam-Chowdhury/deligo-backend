@@ -1,40 +1,50 @@
 import { z } from 'zod';
+import mongoose from 'mongoose';
 
-const menuItemSchema = z.object({
-  name: z.string({
-    required_error: 'Menu item name is required',
-  }),
-  price: z.number({
-    required_error: 'Menu item price is required',
-  }),
-  image: z.string().optional(),
-});
 
-const createRestaurentZodSchema = z.object({
+
+const createRestaurantZodSchema = z.object({
   body: z.object({
     name: z.string({
-      required_error: 'Restaurent name is required',
+      required_error: 'Restaurant name is required',
     }),
     cuisineType: z.string({
       required_error: 'Cuisine type is required',
     }),
-    image: z.string().optional(),
+    images: z.array(z.string()).optional(),
     deliveryTime: z.string({
       required_error: 'Delivery time is required',
     }),
-    menu: z.union([
-      z.array(menuItemSchema),
-      z.string().transform((str) => {
-        try {
-          return JSON.parse(str);
-        } catch {
-          return [];
-        }
+    menus: z
+    .array(
+      z.string().refine((val) => mongoose.Types.ObjectId.isValid(val), {
+        message: 'Invalid menu ID',
       })
-    ]).optional(),
+    )
+    .optional(),
   }),
 });
 
+
+
+const updateRestaurantZodSchema = z.object({
+  body: z.object({
+    name: z.string().optional(),
+    cuisineType: z.string().optional(),
+    deliveryTime: z.string().optional(),
+    menus: z
+      .array(
+        z.string().refine((val) => mongoose.Types.ObjectId.isValid(val), {
+          message: 'Invalid menu ID',
+        })
+      )
+      .optional(),
+  }),
+});
+
+
+
 export const RestaurentValidation = {
-  createRestaurentZodSchema,
+  createRestaurantZodSchema,
+  updateRestaurantZodSchema
 };

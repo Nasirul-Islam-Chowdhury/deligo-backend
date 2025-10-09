@@ -7,6 +7,10 @@ import { USER_ROLE } from '../../../enums/user';
 
 const UserSchema = new Schema<IUser, UserModel>(
   {
+    name: {
+      type: String,
+      required: true,
+    },
     email: {
       type: String,
       required: true,
@@ -19,7 +23,7 @@ const UserSchema = new Schema<IUser, UserModel>(
     },
     needsPasswordChange: {
       type: Boolean,
-      default: true,
+      default: false,
     },
     passwordChangedAt: {
       type: Date,
@@ -36,7 +40,7 @@ const UserSchema = new Schema<IUser, UserModel>(
     role: {
       type: String,
       enum: Object.values(USER_ROLE),
-      default: USER_ROLE.USER,
+      default: USER_ROLE.CUSTOMER,
     },
   },
   {

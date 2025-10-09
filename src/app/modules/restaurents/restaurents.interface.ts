@@ -1,15 +1,10 @@
-
-export type IMenu = {
-  name: string;
-  price: number;
-  image: string;
-};
+import { IMenu } from "../menu/menu.interface";
 
 
 export type IRestaurents = {
   name: string;
   cuisineType: string;
   deliveryTime: string;
-  menu: IMenu[];
-  image: string;
+  images: string[];
+  menus?: IMenu[];
 };

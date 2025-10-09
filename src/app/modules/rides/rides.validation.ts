@@ -8,14 +8,12 @@ const createRideZodSchema = z.object({
     pickup: z.string({ required_error: "pickup is required" }),
     destination: z.string({ required_error: "destination is required" }),
     vehicleType: vehicleTypeEnum,
-    driverName: z.string({ required_error: "driverName is required" }),
-    fare: z.number({ required_error: "fare is required" }),
-    estimatedArrival: z.string({ required_error: "estimatedArrival is required" }),
+    driverName: z.string({ required_error: "driverName is required" }).optional(),
+    fare: z.number({ required_error: "fare is required" }).optional(),
+    estimatedArrival: z.string({ required_error: "estimatedArrival is required" }).optional(),
   }),
 });
 
 export const RideValidation = {
   createRideZodSchema,
 };
-
-

@@ -1,9 +1,9 @@
-/* eslint-disable @typescript-eslint/no-this-alias */
-import { Schema, model } from "mongoose";
+import { Schema, model, Types } from "mongoose";
 import { IRide } from "./rides.interface";
 
 const RideSchema = new Schema<IRide>(
   {
+    customerId: { type: Schema.Types.ObjectId, ref: "User", required: true }, 
     customerName: { type: String },
     pickup: { type: String, required: true },
     destination: { type: String, required: true },
@@ -14,12 +14,8 @@ const RideSchema = new Schema<IRide>(
   },
   {
     timestamps: { createdAt: true, updatedAt: false },
-    toJSON: {
-      virtuals: true,
-    },
+    toJSON: { virtuals: true },
   }
 );
 
 export const Ride = model<IRide>("Ride", RideSchema);
-
-

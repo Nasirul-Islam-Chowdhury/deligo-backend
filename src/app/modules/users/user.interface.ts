@@ -5,6 +5,7 @@ import { USER_ROLE } from '../../../enums/user';
 
 export type IUser = {
   _id?: string;
+  name: string;
   email: string;
   password: string;
   needsPasswordChange: boolean;
@@ -31,6 +32,7 @@ export type UserModel = {
 
 
 export interface TUser {
+  name: string;
   email: string;
   password: string;
   needsPasswordChange: boolean;

@@ -11,18 +11,29 @@ const router = express.Router();
 router.post(
   "/create-restaurent",
   fileUploader.upload.fields([
-    { name: 'restaurantImage', maxCount: 1 },
-    { name: 'menuImages', maxCount: 10 }
+    { name: 'images', maxCount: 10 },
   ]),
   auth(USER_ROLE.ADMIN),
-  validateRequest(RestaurentValidation.createRestaurentZodSchema),
+  // validateRequest(RestaurentValidation.createRestaurantZodSchema),
   RestaurentController.createRestaurent
+);
+
+router.get(
+  "/",
+  auth(USER_ROLE.ADMIN, USER_ROLE.CUSTOMER),
+  RestaurentController.getAllRestaurents
+);
+
+router.get(
+  "/:id",
+  auth(USER_ROLE.ADMIN, USER_ROLE.CUSTOMER),
+  RestaurentController.getSingleRestaurent
 );
 
 router.patch(
   "/:id",
   auth(USER_ROLE.ADMIN),
-  validateRequest(RestaurentValidation.createRestaurentZodSchema.partial()),
+  validateRequest(RestaurentValidation.createRestaurantZodSchema.partial()),
   RestaurentController.updateRestaurent
 );
 
