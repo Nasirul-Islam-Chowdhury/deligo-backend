@@ -2,6 +2,20 @@
 
 Deligo is a full-stack food menu and ordering system designed for restaurants or food vendors, with role-based authentication, admin management, cloud image upload, and a modern, responsive frontend.
 
+---
+
+## 🚨 **Demo Admin Account** 🚨
+
+> 💡 **Try out Deligo as an admin!**
+
+| **Admin Email**               | ** Password** |
+|-------------------------------|:-----------------:|
+| `nasirchy252@gmail.com`       |   `12121212`      |
+
+> ⚡ **Use these credentials on the live site for admin access!**
+
+---
+
 ## Project Overview
 
 This repository contains both the backend (Node.js/Express/MongoDB) and frontend (Next.js/React/Redux) applications.  
@@ -85,9 +99,6 @@ This repository contains both the backend (Node.js/Express/MongoDB) and frontend
 
 ## Demo Link
 
-
-
-[Live Demo (if available)](https://deligo-backend-p3jo.onrender.com/api/v1)
-
+[🚀 **Live Demo (Click Here!)**](https://deligo-backend-p3jo.onrender.com/api/v1)
 
 ---
