@@ -19,7 +19,6 @@ const sendResponse_1 = __importDefault(require("../../../shared/sendResponse"));
 const rides_service_1 = require("./rides.service");
 const createRide = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const user = req.user;
-    console.log(req.body, "-------> body");
     const result = yield rides_service_1.RideService.createRide(Object.assign(Object.assign({}, req.body), { customerId: user.userId }));
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,
@@ -38,7 +37,6 @@ const getRide = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0
         data: result,
     });
 }));
-// ✅ New Controller to get rides for logged-in customer
 const getMyBookedRides = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const user = req.user;
     const result = yield rides_service_1.RideService.getMyBookedRides(user.id);

@@ -12,5 +12,6 @@ const router = express_1.default.Router();
 router.post("/", 
 // validateRequest(RideValidation.createRideZodSchema),
 (0, auth_1.default)(user_1.USER_ROLE.CUSTOMER), rides_controller_1.RideController.createRide);
+router.get("/my-rides", (0, auth_1.default)(user_1.USER_ROLE.CUSTOMER), rides_controller_1.RideController.getMyBookedRides);
 router.get("/:id", rides_controller_1.RideController.getRide);
 exports.rideRoutes = router;

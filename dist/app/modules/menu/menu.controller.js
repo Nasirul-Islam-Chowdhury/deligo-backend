@@ -68,7 +68,6 @@ const addMenuItem = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, vo
 }));
 const updateMenuItem = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
-    console.log(req, "-----_> rew");
     const result = yield menu_service_1.MenuService.updateMenu(id, req.body, req.files);
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,

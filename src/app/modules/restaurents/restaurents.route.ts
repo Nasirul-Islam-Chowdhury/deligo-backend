@@ -13,45 +13,44 @@ router.post(
   fileUploader.upload.fields([
     { name: 'images', maxCount: 10 },
   ]),
-  auth(USER_ROLE.ADMIN),
+  // auth(USER_ROLE.ADMIN),
   // validateRequest(RestaurentValidation.createRestaurantZodSchema),
   RestaurentController.createRestaurent
 );
 
 router.get(
   "/",
-
   RestaurentController.getAllRestaurents
 );
 
 router.get(
   "/:id",
-  auth(USER_ROLE.ADMIN, USER_ROLE.CUSTOMER),
+  // auth(USER_ROLE.ADMIN, USER_ROLE.CUSTOMER),
   RestaurentController.getSingleRestaurent
 );
 
 router.patch(
   "/:id",
-  auth(USER_ROLE.ADMIN),
+  // auth(USER_ROLE.ADMIN),
   validateRequest(RestaurentValidation.createRestaurantZodSchema.partial()),
   RestaurentController.updateRestaurent
 );
 
 router.post(
   "/:id/menu",
-  auth(USER_ROLE.ADMIN),
+  // auth(USER_ROLE.ADMIN),
   RestaurentController.addMenuItem
 );
 
 router.patch(
   "/:id/menu/:itemId",
-  auth(USER_ROLE.ADMIN),
+  // auth(USER_ROLE.ADMIN),
   RestaurentController.updateMenuItem
 );
 
 router.delete(
   "/:id/menu/:itemId",
-  auth(USER_ROLE.ADMIN),
+  // auth(USER_ROLE.ADMIN),
   RestaurentController.deleteMenuItem
 );
 

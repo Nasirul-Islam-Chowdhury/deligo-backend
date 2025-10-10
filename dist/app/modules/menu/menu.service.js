@@ -41,7 +41,6 @@ const addMenuItem = (id, item) => __awaiter(void 0, void 0, void 0, function* ()
     return updated ? updated.toObject() : null;
 });
 const updateMenu = (id, payload, files) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(payload, "-------> payload");
     // Find existing menu
     const existingMenu = yield menu_model_1.Menu.findById(id);
     if (!existingMenu) {
@@ -68,7 +67,6 @@ const updateMenu = (id, payload, files) => __awaiter(void 0, void 0, void 0, fun
         existingMenu.price = payload.price;
     if (payload.description)
         existingMenu.description = payload.description;
-    console.log(existingMenu, "-----> existingMenu");
     const updatedMenu = yield existingMenu.save();
     return updatedMenu;
 });

@@ -11,11 +11,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RideService = void 0;
 const rides_model_1 = require("./rides.model");
-const mongoose_1 = require("mongoose");
 const createRide = (payload) => __awaiter(void 0, void 0, void 0, function* () {
     if (!payload.driverName) {
         const randomDrivers = ["Rahim", "Karim", "Sajid", "Nafis"];
-        payload.driverName = randomDrivers[Math.floor(Math.random() * randomDrivers.length)];
+        payload.driverName =
+            randomDrivers[Math.floor(Math.random() * randomDrivers.length)];
     }
     if (!payload.fare) {
         payload.fare = Math.floor(Math.random() * (500 - 100 + 1)) + 100;
@@ -29,11 +29,8 @@ const createRide = (payload) => __awaiter(void 0, void 0, void 0, function* () {
 const getRideById = (id) => __awaiter(void 0, void 0, void 0, function* () {
     return yield rides_model_1.Ride.findById(id).lean();
 });
-// ✅ New service
 const getMyBookedRides = (customerId) => __awaiter(void 0, void 0, void 0, function* () {
-    return yield rides_model_1.Ride.find({ customerId: new mongoose_1.Types.ObjectId(customerId) })
-        .sort({ createdAt: -1 })
-        .lean();
+    return yield rides_model_1.Ride.find({ customerId });
 });
 exports.RideService = {
     createRide,

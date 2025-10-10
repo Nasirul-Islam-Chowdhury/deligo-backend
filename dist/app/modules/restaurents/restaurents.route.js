@@ -9,18 +9,27 @@ const validateRequest_1 = __importDefault(require("../../middleWares/validateReq
 const restaurents_controller_1 = require("./restaurents.controller");
 const restaurents_validation_1 = require("./restaurents.validation");
 const uploadImage_1 = require("../../../helper/uploadImage");
-const auth_1 = __importDefault(require("../../middleWares/auth"));
-const user_1 = require("../../../enums/user");
 const router = express_1.default.Router();
 router.post("/create-restaurent", uploadImage_1.fileUploader.upload.fields([
     { name: 'images', maxCount: 10 },
-]), (0, auth_1.default)(user_1.USER_ROLE.ADMIN), 
+]), 
+// auth(USER_ROLE.ADMIN),
 // validateRequest(RestaurentValidation.createRestaurantZodSchema),
 restaurents_controller_1.RestaurentController.createRestaurent);
-router.get("/", (0, auth_1.default)(user_1.USER_ROLE.ADMIN, user_1.USER_ROLE.CUSTOMER), restaurents_controller_1.RestaurentController.getAllRestaurents);
-router.get("/:id", (0, auth_1.default)(user_1.USER_ROLE.ADMIN, user_1.USER_ROLE.CUSTOMER), restaurents_controller_1.RestaurentController.getSingleRestaurent);
-router.patch("/:id", (0, auth_1.default)(user_1.USER_ROLE.ADMIN), (0, validateRequest_1.default)(restaurents_validation_1.RestaurentValidation.createRestaurantZodSchema.partial()), restaurents_controller_1.RestaurentController.updateRestaurent);
-router.post("/:id/menu", (0, auth_1.default)(user_1.USER_ROLE.ADMIN), restaurents_controller_1.RestaurentController.addMenuItem);
-router.patch("/:id/menu/:itemId", (0, auth_1.default)(user_1.USER_ROLE.ADMIN), restaurents_controller_1.RestaurentController.updateMenuItem);
-router.delete("/:id/menu/:itemId", (0, auth_1.default)(user_1.USER_ROLE.ADMIN), restaurents_controller_1.RestaurentController.deleteMenuItem);
+router.get("/", restaurents_controller_1.RestaurentController.getAllRestaurents);
+router.get("/:id", 
+// auth(USER_ROLE.ADMIN, USER_ROLE.CUSTOMER),
+restaurents_controller_1.RestaurentController.getSingleRestaurent);
+router.patch("/:id", 
+// auth(USER_ROLE.ADMIN),
+(0, validateRequest_1.default)(restaurents_validation_1.RestaurentValidation.createRestaurantZodSchema.partial()), restaurents_controller_1.RestaurentController.updateRestaurent);
+router.post("/:id/menu", 
+// auth(USER_ROLE.ADMIN),
+restaurents_controller_1.RestaurentController.addMenuItem);
+router.patch("/:id/menu/:itemId", 
+// auth(USER_ROLE.ADMIN),
+restaurents_controller_1.RestaurentController.updateMenuItem);
+router.delete("/:id/menu/:itemId", 
+// auth(USER_ROLE.ADMIN),
+restaurents_controller_1.RestaurentController.deleteMenuItem);
 exports.restaurentRoutes = router;
