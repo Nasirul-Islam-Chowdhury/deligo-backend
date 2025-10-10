@@ -85,10 +85,9 @@ This repository contains both the backend (Node.js/Express/MongoDB) and frontend
 
 ## Demo Link
 
-*(Demo deployment is optional—replace with your actual URL if deployed)*
 
-[Live Demo (if available)](https://your-deligo-demo-url.com)
 
-For screenshots and more details, see the `/deligo-frontend` documentation and the `/deligo-backend` API routes.
+[Live Demo (if available)](https://deligo-backend-p3jo.onrender.com/api/v1)
+
 
 ---

@@ -20,7 +20,7 @@ router.post(
 
 router.get(
   "/",
-  auth(USER_ROLE.ADMIN, USER_ROLE.CUSTOMER),
+
   RestaurentController.getAllRestaurents
 );
 
