@@ -1,4 +1,4 @@
-import { createLogger, format } from 'winston';
+import winston, { createLogger, format } from 'winston';
 const { combine, timestamp, label, printf } = format;
 import DailyRotateFile from 'winston-daily-rotate-file';
 import path from 'path';
@@ -10,6 +10,9 @@ const logger = createLogger({
   level: 'info',
   format: combine(label({ label: 'Auth service' }), timestamp(), myFormat),
   transports: [
+    new winston.transports.Console(),  // at least one transport is required
+  ]
+  //[
     // new DailyRotateFile({
     //   filename: path.join(
     //     process.cwd(),
@@ -23,13 +26,16 @@ const logger = createLogger({
     //   maxSize: '20m',
     //   maxFiles: '14d',
     // }),
-  ],
+  // ],
 });
 
 const errorLogger = createLogger({
   level: 'error',
   format: combine(label({ label: 'um error' }), timestamp(), myFormat),
   transports: [
+    new winston.transports.Console(),  // at least one transport is required
+  ]
+  //[
     // new DailyRotateFile({
     //   filename: path.join(
     //     process.cwd(),
@@ -43,7 +49,7 @@ const errorLogger = createLogger({
     //   maxSize: '20m',
     //   maxFiles: '14d',
     // }),
-  ],
+  //],
 });
 
 export { logger, errorLogger };
