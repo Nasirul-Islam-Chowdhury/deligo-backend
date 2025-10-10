@@ -34,7 +34,7 @@ app.get('/health', (req, res) => {
 
 //Testing
 app.get('/', async (req: Request, res: Response, next: NextFunction) => {
-  throw new Error('Testing Error logger')
+  res.status(200).json({ status: 'OK', message: 'Server is running' });
 })
 
 //global error handler

@@ -139,6 +139,11 @@
             "date": 1760036514505,
             "name": "/Users/mdnasirulislamchowdhury/Code/deligo/deligo-backend/logs/winston/errors/phu-2025-10-10-01-error.log",
             "hash": "53a0f6c57306114e7863ad9d37a5d054b6cebfcf5190175b21049e971415191f"
+        },
+        {
+            "date": 1760041405069,
+            "name": "/Users/mdnasirulislamchowdhury/Code/deligo/deligo-backend/logs/winston/errors/phu-2025-10-10-02-error.log",
+            "hash": "35accbe0a5a3a0846c1199d828cb39b63fe203a14079663daf4ae772305c77f6"
         }
     ],
     "hashType": "sha256"

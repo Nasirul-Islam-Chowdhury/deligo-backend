@@ -34,7 +34,7 @@ app.get('/health', (req, res) => {
 });
 //Testing
 app.get('/', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    throw new Error('Testing Error logger');
+    res.status(200).json({ status: 'OK', message: 'Server is running' });
 }));
 //global error handler
 app.use(globalErrorHandlers_1.default);

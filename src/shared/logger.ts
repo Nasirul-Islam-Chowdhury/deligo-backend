@@ -10,19 +10,19 @@ const logger = createLogger({
   level: 'info',
   format: combine(label({ label: 'Auth service' }), timestamp(), myFormat),
   transports: [
-    new DailyRotateFile({
-      filename: path.join(
-        process.cwd(),
-        'logs',
-        'winston',
-        'successes',
-        'phu-%DATE%-success.log',
-      ),
-      datePattern: 'YYYY-DD-MM-HH',
-      zippedArchive: true,
-      maxSize: '20m',
-      maxFiles: '14d',
-    }),
+    // new DailyRotateFile({
+    //   filename: path.join(
+    //     process.cwd(),
+    //     'logs',
+    //     'winston',
+    //     'successes',
+    //     'phu-%DATE%-success.log',
+    //   ),
+    //   datePattern: 'YYYY-DD-MM-HH',
+    //   zippedArchive: true,
+    //   maxSize: '20m',
+    //   maxFiles: '14d',
+    // }),
   ],
 });
 
@@ -30,19 +30,19 @@ const errorLogger = createLogger({
   level: 'error',
   format: combine(label({ label: 'um error' }), timestamp(), myFormat),
   transports: [
-    new DailyRotateFile({
-      filename: path.join(
-        process.cwd(),
-        'logs',
-        'winston',
-        'errors',
-        'phu-%DATE%-error.log',
-      ),
-      datePattern: 'YYYY-DD-MM-HH',
-      zippedArchive: true,
-      maxSize: '20m',
-      maxFiles: '14d',
-    }),
+    // new DailyRotateFile({
+    //   filename: path.join(
+    //     process.cwd(),
+    //     'logs',
+    //     'winston',
+    //     'errors',
+    //     'phu-%DATE%-error.log',
+    //   ),
+    //   datePattern: 'YYYY-DD-MM-HH',
+    //   zippedArchive: true,
+    //   maxSize: '20m',
+    //   maxFiles: '14d',
+    // }),
   ],
 });
 
