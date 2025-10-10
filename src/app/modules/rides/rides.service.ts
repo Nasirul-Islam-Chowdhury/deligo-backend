@@ -21,11 +21,11 @@ const createRide = async (payload: IRide): Promise<IRide> => {
 };
 
 const getRideById = async (id: string): Promise<IRide | null> => {
-  return await Ride.findById(id).lean();
+  return await Ride.findById({customerId: id}).lean();
 };
 
 const getMyBookedRides = async (customerId: string): Promise<IRide[]> => {
-  return await Ride.find({ customerId });
+  return await Ride.find({customerId});
 };
 
 export const RideService = {

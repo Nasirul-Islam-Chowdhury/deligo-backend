@@ -33,7 +33,8 @@ const getRide: RequestHandler = catchAsync(async (req: Request, res: Response) =
 
 const getMyBookedRides: RequestHandler = catchAsync(async (req: Request, res: Response) => {
   const user = req.user;
-  const result = await RideService.getMyBookedRides(user!.id);
+
+  const result = await RideService.getMyBookedRides(user!.userId);
 
   sendResponse<IRide[]>(res, {
     statusCode: httpStatus.OK,

@@ -31,7 +31,7 @@ const getAllMenus: RequestHandler = catchAsync(
     sendResponse<IMenu[]>(res, {
       statusCode: httpStatus.OK,
       success: true,
-      message: "Restaurent retrieved successfully!",
+      message: "Menus retrieved successfully!",
       data: result,
     });
   }
