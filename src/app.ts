@@ -9,10 +9,17 @@ import globalErrorHandler from './app/middleWares/globalErrorHandlers';
 const app: Application = express();
 
 app.use(cors({
-  origin:"*",
+  origin: [
+    'http://localhost:3000',
+    'http://localhost:3001', 
+    'http://localhost:8000', 
+    'http://localhost:5000', 
+    'https://deligo-frontend.vercel.app', 
+  ],
   credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
 }));
-
 
 
 app.use(cookieParser());
