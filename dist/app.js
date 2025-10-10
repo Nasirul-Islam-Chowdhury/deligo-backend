@@ -19,10 +19,25 @@ const routes_1 = __importDefault(require("./app/routes"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const globalErrorHandlers_1 = __importDefault(require("./app/middleWares/globalErrorHandlers"));
 const app = (0, express_1.default)();
+const allowedOrigins = [
+    'https://deligo-frontend.vercel.app',
+    'http://localhost:3000',
+    'http://localhost:3001',
+];
 app.use((0, cors_1.default)({
-    origin: "*",
+    origin: (origin, callback) => {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, origin);
+        }
+        else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
     credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
 }));
+app.options('*', (0, cors_1.default)()); // handle preflight
 app.use((0, cookie_parser_1.default)());
 //parser
 app.use(express_1.default.json());
