@@ -58,7 +58,6 @@ const updateMenu = async (
     images?: Express.Multer.File[];
   }
 ) => {
-  console.log(payload, "-------> payload");
 
   // Find existing menu
   const existingMenu = await Menu.findById(id);
@@ -88,7 +87,6 @@ const updateMenu = async (
   if (payload.description)
     (existingMenu as any).description = payload.description;
 
-  console.log(existingMenu, "-----> existingMenu");
 
   const updatedMenu = await existingMenu.save();
   return updatedMenu;

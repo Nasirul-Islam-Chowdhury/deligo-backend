@@ -14,6 +14,9 @@ router.post(
   RideController.createRide
 );
 
+router.get("/my-rides", auth(USER_ROLE.CUSTOMER), RideController.getMyBookedRides);
+
+
 router.get(
   "/:id",
   RideController.getRide

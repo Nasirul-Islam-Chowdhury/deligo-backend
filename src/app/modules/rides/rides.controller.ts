@@ -9,7 +9,6 @@ import { RideService } from "./rides.service";
 const createRide: RequestHandler = catchAsync(async (req: Request, res: Response) => {
   const user = req.user; 
 
-  console.log(req.body,"-------> body");
   const result = await RideService.createRide({ ...req.body, customerId: user!.userId });
 
   sendResponse<IRide>(res, {
@@ -32,7 +31,6 @@ const getRide: RequestHandler = catchAsync(async (req: Request, res: Response) =
   });
 });
 
-// ✅ New Controller to get rides for logged-in customer
 const getMyBookedRides: RequestHandler = catchAsync(async (req: Request, res: Response) => {
   const user = req.user;
   const result = await RideService.getMyBookedRides(user!.id);

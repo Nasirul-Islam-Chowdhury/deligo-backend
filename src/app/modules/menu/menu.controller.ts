@@ -81,7 +81,6 @@ const addMenuItem: RequestHandler = catchAsync(
 const updateMenuItem: RequestHandler = catchAsync(
   async (req: Request, res: Response) => {
     const { id } = req.params;
-console.log(req, "-----_> rew")
     const result = await MenuService.updateMenu(id, req.body, req.files as { images?: Express.Multer.File[] });
     sendResponse<IMenu>(res, {
       statusCode: httpStatus.OK,
